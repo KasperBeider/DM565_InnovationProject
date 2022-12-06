@@ -1,5 +1,5 @@
 :root{
-    --main-color: rgb(112, 174, 61)
+    --main-color: rgb(112, 174, 61);
 }
 
 .nav {
@@ -49,7 +49,9 @@
     font-style: italic;
     box-sizing: border-box;
     margin: 8px 0;
-    width: 15rem;
+    width: 17rem;
+    padding: 10px;
+    text-align: left;
 }
 
 textarea:focus, input:focus{
@@ -61,12 +63,18 @@ input:focus::placeholder{
 }
 
 ::-webkit-input-placeholder{
-    color: rgb(219, 116, 202);
+    color: rgb(0, 0, 0);
 }
 
 .searchButton {
-    background-color:rgb(219, 116, 202);
+    background-color: white;
+    border-style: none;
+    border-radius: 10px;
     height: 40px;
     width: 40px;
     align-self: center;
+}
+
+.searchButton:hover {
+    background-color: rgb(220,220,220);
 }

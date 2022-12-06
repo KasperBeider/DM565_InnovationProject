@@ -1,8 +1,8 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom" // used to avoid page refreshment every time
-import React from 'react'
+import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom" // used to avoid page refreshment every time
 
 import "./styles/navbar.css"
 import {BsSearch} from "react-icons/bs"
+import {useState} from 'react'
 
 /**
  * Renders a navigation bar that displays different buttons
@@ -10,28 +10,32 @@ import {BsSearch} from "react-icons/bs"
  * @returns React Component
  */
 export default function Navbar() {
-    const [search, setSearch] = React.useState("");
-    function searchFunc() {
-        console.log(search)
+    const [search, setSearch] = useState("");
+    const navigate = useNavigate();
+
+    function searchFunction( query ){
+        setSearch("");
+        navigate("/search/" + query);
     }
 
     return (
         <nav className="nav">
             <Link to="/" className="site-title">
-                Inutilia Emptio
+                Billig & Bedst
             </Link>
             <ul>
                 <input type="text" 
                 className="searchBar" 
-                placeholder="Hvilket produkt vil du søge efter?"
+                placeholder="Hvilket produkt vil du søge efter?..."
+                value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 />
-                <button type="submit" className="searchButton" onClick={() => searchFunc()}>
+                <button type="submit" className="searchButton" onClick={() => searchFunction(search)}>
                     <BsSearch/>
                 </button>
                 <CustomLink to="/butik">Butik</CustomLink>
                 <CustomLink to="/kurv">Min Kurv</CustomLink>
-                <CustomLink to="/kundeservice">Kundeservice</CustomLink>
+                <CustomLink to="/support">Kundeservice</CustomLink>
             </ul>
         </nav>  
     )

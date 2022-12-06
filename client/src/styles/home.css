@@ -1,0 +1,20 @@
+
+.home--display {
+    display:table;
+    width: 100%;
+    padding: 10px;
+}
+
+.home--SallingGroup {
+    display:table-cell;
+    width: 25%;
+    background-color: red;
+    padding: 10px;
+}
+
+.home--Coop {
+    display: table-cell;
+    width: 25%;
+    margin-left: 20px;
+    background-color: blue;
+}
