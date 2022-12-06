@@ -2,7 +2,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom" // used to av
 import React from 'react'
 
 import "./styles/navbar.css"
-import {VscSearch} from "react-icons/vsc"
+import {BsSearch} from "react-icons/bs"
 
 /**
  * Renders a navigation bar that displays different buttons
@@ -10,14 +10,25 @@ import {VscSearch} from "react-icons/vsc"
  * @returns React Component
  */
 export default function Navbar() {
+    const [search, setSearch] = React.useState("");
+    function searchFunc() {
+        console.log(search)
+    }
+
     return (
         <nav className="nav">
             <Link to="/" className="site-title">
                 Inutilia Emptio
             </Link>
             <ul>
-                <input type="text" className="searchBar" placeholder="Hvilket produkt vil du søge efter?"/>
-                <button type="submit"><VscSearch/></button>
+                <input type="text" 
+                className="searchBar" 
+                placeholder="Hvilket produkt vil du søge efter?"
+                onChange={(e) => setSearch(e.target.value)}
+                />
+                <button type="submit" className="searchButton" onClick={() => searchFunc()}>
+                    <BsSearch/>
+                </button>
                 <CustomLink to="/butik">Butik</CustomLink>
                 <CustomLink to="/kurv">Min Kurv</CustomLink>
                 <CustomLink to="/kundeservice">Kundeservice</CustomLink>

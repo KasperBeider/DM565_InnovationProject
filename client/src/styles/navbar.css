@@ -65,6 +65,8 @@ input:focus::placeholder{
 }
 
 .searchButton {
-    background-color: black;
-    color: black;
+    background-color:rgb(219, 116, 202);
+    height: 40px;
+    width: 40px;
+    align-self: center;
 }
