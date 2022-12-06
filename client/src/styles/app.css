@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.site-title {
+    font-size: 2rem
+}
+
+.container {
+    margin: 1rem;
+    text-align: center;
+}
