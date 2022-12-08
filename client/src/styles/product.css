@@ -1,0 +1,46 @@
+
+.not--found{
+    font-size: 50pt;
+}
+
+.product--loading{
+    font-size: 40pt;
+    color: rgb(95, 134, 35);
+    font-style: bold;
+}
+
+.product--name{
+    margin: 1px;
+    font-family: sans-serif;
+    color: rgb(52, 158, 96);
+    font-size: 40pt;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.product--header{
+    display: table
+}
+
+.product--add--button{
+    width: 15rem;
+    height: 5rem;
+    font-size: 2rem;
+    color: black;
+    border-radius: 10px;
+}
+
+.product--store--info{
+    border-style: solid;
+    border-color: lightblue;
+    padding: 5px;
+    width: 20rem;
+    margin: 10px auto;
+    float: left;
+    margin-right: 10px;
+}
+
+.product--list{
+    align-items: left;
+    overflow: hidden;
+}

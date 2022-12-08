@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { useParams, useLocation, json } from 'react-router-dom'
-import { useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useParams} from 'react-router-dom'
 import axios from 'axios'
+import SearchResultItem from '../RenderComponents/SearchResultItem'
+import "../styles/searchResult.css"
 
 export default function SearchResult() {
 
@@ -30,42 +31,53 @@ export default function SearchResult() {
 
     // get product info + min-price based on ean
     useEffect( () => {
-        setProducts([])
 
-        async function getProductInfo(ean){
-            const res_info = await axios.get("/productinfo", {params: {ean: ean}})
-            const res_min_price = await axios.get("/minprice", {params: {ean: ean}})
-            const res_campaign = await axios.get("/campaign", {params: {ean: ean}})
+        async function getProductInfo(eans){
+            console.log("inside product info")
 
-            let product = res_info.data[0]
-            product.minPrice = res_min_price.data
-
-            if (res_campaign.data === null){
-                product.campaign_unit_price = null
-            } else {
-                product.campaign_unit_price = res_campaign.data
+            for(const ean of eans){
+                const [res_info, res_min_price, res_campaign] = await Promise.all([axios.get("/productinfo", {params: {ean: ean}}),
+                                                                               axios.get("/minprice", {params: {ean: ean}}),
+                                                                               axios.get("/campaign", {params: {ean: ean}})])
+                let product = res_info.data[0]
+                product.minPrice = res_min_price.data
+    
+                if (res_campaign.data === null){
+                    product.campaign_unit_price = null
+                } else {
+                    product.campaign_unit_price = res_campaign.data
+                }
+                
+                setProducts( oldProducts => [...oldProducts, product] )
             }
-
-            setProducts( oldProducts => [...oldProducts, res_info.data[0]] )
         }
-        productEan.forEach( ean => getProductInfo(ean))
+        getProductInfo(productEan)
+
+        
+
     }, [productEan]);
+
+    
 
     
     return (
         <>
             <div>
-                <p>{query}</p>
-                {productEan.map(ean => {
-                    return <p>{ean}</p>
-                })}
-
-                {
-                    products.map( product => {
-                        return <p>{JSON.stringify(product)}</p>
-                    })
-                }
+                <h1>Dit søgeresultat for {query}</h1>
+                <div className='searchResult--container'>
+                    {
+                        products.map( product => {
+                            return <SearchResultItem key = {product.product_ean} product_item = {product}/>
+                        })
+                    }
+                </div>
             </div>
         </>
     )
 }
+
+
+
+// {productEan.map(ean => {
+//     return <p>{ean}</p>
+// })}

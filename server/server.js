@@ -53,15 +53,68 @@ app.get("/campaign", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
     
-    SQL_QUERY = "SELECT MIN(unit_price) AS min FROM campaigns WHERE to_date > CURDATE() AND product_ean = ?"
+    SQL_QUERY = "SELECT MIN(unit_price) AS min FROM campaigns WHERE to_date >= CURDATE() AND product_ean = ?"
 
     db.query(SQL_QUERY, [ean], (err, result) => {
-        console.log("Campaign:", result)
         res.json(result[0].min)
     })
 })
 
+app.get("/product-store-info", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean = queryObject.ean.toString()
 
+    SQL_QUERY = "SELECT * FROM products WHERE product_ean = ?"
+    + " AND pull_date = (SELECT MAX(pull_date) FROM products)"
+
+    db.query(SQL_QUERY, [ean], (err, result) => {
+        res.json(result)
+    })
+})
+
+app.get("/store", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const storeId = queryObject.storeId.toString()
+
+    SQL_QUERY = "SELECT * FROM stores WHERE store_id = ?"
+
+    db.query(SQL_QUERY, [storeId], (err, result) => {
+        res.json(result)
+    })
+})
+
+app.get("/avg-price", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean = queryObject.ean.toString()
+    const storeId = queryObject.store_id.toString()
+
+    SQL_QUERY = "SELECT AVG(price) AS avg FROM products WHERE product_ean = ?" +
+                " AND store_id = ?" +
+                " AND DATEDIFF(CURDATE(), pull_date) BETWEEN 0 AND 30"
+    
+    db.query(SQL_QUERY, [ean, storeId], (err, result) => {
+        console.log(result)
+        res.json(result)
+    })
+})
+
+
+app.get("/store-basket-info", (req,res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean_numbers = queryObject.ean_numbers.toString()
+    const storeId = queryObject.store_id.toString()
+    console.log(ean_numbers)
+    console.log(storeId)
+
+    SQL_QUERY = "SELECT * FROM products WHERE product_ean IN (" + ean_numbers + ")" +
+                " AND store_id = ?" +
+                " AND pull_date = (SELECT MAX(pull_date) FROM products)"
+    
+    db.query(SQL_QUERY, [storeId], (err, result) => {
+        console.log(result)
+        res.json(result)
+    })
+})
 
 
 

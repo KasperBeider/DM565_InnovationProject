@@ -34,7 +34,7 @@ export default function Navbar() {
                     <BsSearch/>
                 </button>
                 <CustomLink to="/butik">Butik</CustomLink>
-                <CustomLink to="/kurv">Min Kurv</CustomLink>
+                <CustomLink to="/shoppingList">Min indkøbsliste</CustomLink>
                 <CustomLink to="/support">Kundeservice</CustomLink>
             </ul>
         </nav>  

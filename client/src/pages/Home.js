@@ -4,7 +4,7 @@ import "../styles/home.css"
 export default function Home() {
     return (
         <div>
-            <p>Home</p>
+            <h1>Samarbejdspartnere</h1>
             <div className='home--display'>
                 <div className='home--SallingGroup'>
                     <h1>Salling Group</h1>
