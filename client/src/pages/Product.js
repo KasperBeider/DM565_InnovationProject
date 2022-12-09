@@ -50,15 +50,19 @@ export default function Product() {
     function productFoundView(){
         return (
             <>
-                <div className="product--header">
-                    <p className="product--name">{dataRows[0].product_name}</p>
-                    <button className="product--add--button" onClick={() => addToList(dataRows[0].product_ean)}> Tilføj til indkøbsliste </button>
-                </div>
-                <p className="product--description">Gennemsnitspriserne er beregnet ud fra data fra de sidste 4 ugers priser for det givne produkt i den givne butik.</p>
-                <div className="product--list">
-                    {dataRows.map(row => {
-                        return <ProductStoreItem dataRow={row}/>
-                    })}
+                <div className="product--container">
+                    <div className="product--header">
+                        <p className="product--name">{dataRows[0].product_name}</p>
+                        <button className="product--add--button" onClick={() => addToList(dataRows[0].product_ean)}> Tilføj til indkøbsliste </button>
+                    </div>
+                    <p className="product--description">
+                            Gennemsnitspriserne er beregnet ud fra data fra de sidste 4 ugers priser for det givne produkt i den givne butik.</p>
+                            <p className="product--description"><span style={{ fontWeight: 'bold' }}>Tryk</span> på det enkelte produkt for at få en oversigt over prisudviklingen.</p>
+                    <div className="product--list">
+                        {dataRows.map(row => {
+                            return <ProductStoreItem dataRow={row}/>
+                        })}
+                    </div>
                 </div>
                 
             </>

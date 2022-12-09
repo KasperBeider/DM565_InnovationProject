@@ -18,26 +18,68 @@
     text-decoration-thickness: 2px;
 }
 
-.product--header{
-    display: table
+.product--container{
+    background-color: rgb(240, 245, 200);
+    margin: -0.5%;
+    padding-bottom: 10px;
 }
+
+.product--description{
+    margin: 0;
+    padding: 10px
+}
+
+.product--pitch{
+    color: rgb(209, 76, 36);
+    font-weight: bold;
+}
+
+.product--disclaimer{
+    font-size: 9.5pt;
+    margin: 2px;
+}
+
 
 .product--add--button{
     width: 15rem;
     height: 5rem;
     font-size: 2rem;
-    color: black;
+    color: rgb(51, 53, 63);
+    background-color: lightblue;
+    border-color: transparent;
     border-radius: 10px;
 }
 
-.product--store--info{
+.product--add--button:hover{
+    background-color: rgb(154, 199, 214)
+}
+
+.product--store--info--regular{
     border-style: solid;
     border-color: lightblue;
-    padding: 5px;
+    background-color: lightcyan;
+    padding-bottom: 5px;
     width: 20rem;
-    margin: 10px auto;
-    float: left;
-    margin-right: 10px;
+    margin: 10px 5px auto;
+    display:inline-block
+}
+
+.product--store--info--regular:hover{
+    background-color: lightskyblue;
+}
+
+.product--store--info--sale{
+    border-style: solid;
+    border-color: rgb(109, 172, 107);
+    background-color: rgb(126, 233, 158);
+    padding-bottom: 5px;
+    width: 20rem;
+    margin: 10px 5px auto;
+    display:inline-block
+}
+
+.product--store--info--sale:hover{
+    background-color: rgb(108, 207, 108);
 }
 
 .product--list{

@@ -11,6 +11,7 @@ import SearchResult from "./pages/SearchResult";
 import Support from "./pages/Support";
 import Product from "./pages/Product"
 import ShoppingList from "./pages/ShoppingList";
+import Model from "./pages/Model";
 import {ShoppingListContext} from "./ShoppingListContext"
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/search/:query" element={<SearchResult/>} />
                     <Route path="/support" element={<Support/>}/>
                     <Route path="/product/:ean" element={<Product/>} />
+                    <Route path="/model/:ean/store/:storeId" element={<Model/>} />
                 </Routes>
             </div>
         </ShoppingListContext.Provider>

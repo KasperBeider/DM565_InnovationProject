@@ -99,31 +99,57 @@ app.get("/avg-price", (req, res) => {
 })
 
 
-app.get("/store-basket-info", (req,res) => {
+app.get("/store-shoppinglist-info", (req,res) => {
     const queryObject = url.parse(req.url, true).query
     const ean_numbers = queryObject.ean_numbers.toString()
     const storeId = queryObject.store_id.toString()
-    console.log(ean_numbers)
-    console.log(storeId)
+    
 
     SQL_QUERY = "SELECT * FROM products WHERE product_ean IN (" + ean_numbers + ")" +
                 " AND store_id = ?" +
                 " AND pull_date = (SELECT MAX(pull_date) FROM products)"
     
     db.query(SQL_QUERY, [storeId], (err, result) => {
-        console.log(result)
         res.json(result)
     })
 })
 
+app.get("/on-sale-today", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean = queryObject.ean.toString()
+    const storeId = queryObject.store_id.toString()
 
+    SQL_QUERY = "SELECT * FROM campaigns WHERE product_ean = ? AND store_id = ? AND to_date >= CURDATE()"
 
+    db.query(SQL_QUERY, [ean, storeId], (err, result) => {
+        res.json(result)
+    })
+})
 
+app.get("/product-history", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean = queryObject.ean.toString()
+    const storeId = queryObject.store_id.toString()
 
+    SQL_QUERY = "SELECT * FROM products WHERE product_ean = ? AND store_id = ? ORDER BY pull_date"
 
+    db.query(SQL_QUERY, [ean, storeId], (err, result) => {
+        res.json(result)
+    })
+})
 
+app.get("/campaign-history", (req, res) => {
+    const queryObject = url.parse(req.url, true).query
+    const ean = queryObject.ean.toString()
+    const storeId = queryObject.store_id.toString()
 
+    SQL_QUERY = "SELECT * FROM campaigns WHERE product_ean = ? AND store_id = ? ORDER BY pull_date"
 
+    db.query(SQL_QUERY, [ean, storeId], (err, result) => {
+        console.log(result)
+        res.json(result)
+    })
+})
 
 app.listen(5000, () => {
     console.log("Server started on port 5000")
