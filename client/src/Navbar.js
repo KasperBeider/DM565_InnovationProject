@@ -5,8 +5,7 @@ import {BsSearch} from "react-icons/bs"
 import {useState} from 'react'
 
 /**
- * Renders a navigation bar that displays different buttons
- * depending on the log-in state of the user.
+ * Renders a navigation bar that displays different buttons (shoppinglist, support, search bar)
  * @returns React Component
  */
 export default function Navbar() {
@@ -33,7 +32,6 @@ export default function Navbar() {
                 <button type="submit" className="searchButton" onClick={() => searchFunction(search)}>
                     <BsSearch/>
                 </button>
-                <CustomLink to="/butik">Butik</CustomLink>
                 <CustomLink to="/shoppingList">Min indkøbsliste</CustomLink>
                 <CustomLink to="/support">Kundeservice</CustomLink>
             </ul>

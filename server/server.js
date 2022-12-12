@@ -7,6 +7,9 @@ const db = require('./database')
 
 app.use(bodyParser.json())
 
+/**
+ * Find product eans whose name contains the query
+ */
 app.get("/search", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const query_string = queryObject.query.toString()
@@ -19,6 +22,9 @@ app.get("/search", (req, res) => {
     })
 })
 
+/**
+ * Find the latest information for a given product (Only looking at the latest entry for that product)
+ */
 app.get("/productinfo", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -35,6 +41,10 @@ app.get("/productinfo", (req, res) => {
     })
 })
 
+/**
+ * Find the lowest price for a given product across stores
+ * Only looking at the latest entries for that product (meaning it should be the most up to date)
+ */
 app.get("/minprice", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -49,6 +59,9 @@ app.get("/minprice", (req, res) => {
     })
 })
 
+/**
+ * Gets the lowest offer price for a given product for any current campaigns
+ */
 app.get("/campaign", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -60,6 +73,9 @@ app.get("/campaign", (req, res) => {
     })
 })
 
+/**
+ * Gets information for all the most recent entries for a given product
+ */
 app.get("/product-store-info", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -72,6 +88,9 @@ app.get("/product-store-info", (req, res) => {
     })
 })
 
+/**
+ * Get information about a specific store from store_id
+ */
 app.get("/store", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const storeId = queryObject.storeId.toString()
@@ -83,6 +102,9 @@ app.get("/store", (req, res) => {
     })
 })
 
+/**
+ * Average the price for a given product in a given store over the last 30 days. 
+ */
 app.get("/avg-price", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -98,7 +120,10 @@ app.get("/avg-price", (req, res) => {
     })
 })
 
-
+/**
+ *  Retrieves information about a list of products
+ *  given by EAN numbers in a given store.
+ */
 app.get("/store-shoppinglist-info", (req,res) => {
     const queryObject = url.parse(req.url, true).query
     const ean_numbers = queryObject.ean_numbers.toString()
@@ -114,6 +139,10 @@ app.get("/store-shoppinglist-info", (req,res) => {
     })
 })
 
+/**
+ * Retrieves information about the on-sale status of a given
+ * product with a given EAN number and Store ID.
+ */
 app.get("/on-sale-today", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -126,6 +155,10 @@ app.get("/on-sale-today", (req, res) => {
     })
 })
 
+/**
+ * Retrives information about the previous ordinary prices for a
+ * product with a given EAN number.
+ */
 app.get("/product-history", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()
@@ -138,6 +171,10 @@ app.get("/product-history", (req, res) => {
     })
 })
 
+/**
+ * Retrieves information about the previous campaign prices for a 
+ * product with a given EAN number.
+ */
 app.get("/campaign-history", (req, res) => {
     const queryObject = url.parse(req.url, true).query
     const ean = queryObject.ean.toString()

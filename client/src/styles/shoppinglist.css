@@ -1,0 +1,45 @@
+
+.shoppinglist--store-container {
+    border: 1cm;
+    justify-content: center;
+    display: grid;
+}
+
+.shoppinglist--store-items {
+    background-color: rgb(98, 177, 83);
+    display: flex;
+    min-width: max-content;
+    justify-content: center;
+    margin: 10px;
+    
+}
+
+.shoppinglist--store-button {
+    height: 50px;
+    font-weight: bold;
+    font-size: large;
+    border-color: transparent;
+    background-color: transparent;
+    color: rgb(94, 137, 202);
+}
+
+.shoppinglist--store-button:hover{
+    background-color: rgb(218, 200, 233);
+}
+
+.shoppinglist--item {
+    background-color: lightblue;
+    margin: 20px;
+    padding: 5px;
+}
+
+.shoppinglist--combined-price {
+    font-size: large;
+    font-weight: bold;
+}
+
+.list--item--loading{
+    font-style: italic;
+    color: white;
+    
+}

@@ -12,6 +12,10 @@ export default function Model() {
     const [campaignGraphVals, setCampaignGraphVals] = useState([])
     const [graphVals, setGraphVals] = useState([])
 
+    /**
+     * Retrieve general product history as well as campaign history
+     * of the given product on each render.
+     */
     useEffect( () => {
         async function getHistory(){
             const res = await axios.get("/product-history", {params: {ean: ean, store_id: storeId}})
@@ -36,6 +40,11 @@ export default function Model() {
         getCampaignHistory()
     }, [ean, storeId])
 
+    /**
+     * Create data points for the LineSeries.
+     * Campaign points are inserted into their own data set
+     * to be plotted separately.
+     */
     useEffect( () => {
         let i = 0
         const arr = []
@@ -43,7 +52,6 @@ export default function Model() {
         for(const row of history){
             // check if item has campaign at this pull date
             const possibleCampaign = campaignHist.filter( element => element.to_date >= row.pull_date && row.pull_date >= element.from_date)
-            console.log(row.pull_date)
             if ( possibleCampaign.length > 0){
                 const campaign = {
                     x: i,
@@ -65,15 +73,15 @@ export default function Model() {
 
     return (
         <>
-            <p>Model</p>
+            <h1>Model</h1>
             <div className='model--container'>
-                <XYPlot height={300} width={1200}>
+                <XYPlot height={600} width={1200}>
                     <LineSeries data={graphVals} opacity={0.5} color="black"/>
-                    <MarkSeries data={campaignGraphVals} />
-                    <VerticalGridLines />
+                    <MarkSeries data={campaignGraphVals} color="orange"/>
+                    <VerticalGridLines/>
                     <HorizontalGridLines />
-                    <XAxis title='Dato' />
-                    <YAxis title='Pris'/>
+                    <XAxis title='Dato' style={{text: {fill: "black"}}}/>
+                    <YAxis title='Pris' style={{text: {fill: "black"}}}/>
                 </XYPlot>
             </div>
         </>

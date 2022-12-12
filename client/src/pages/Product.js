@@ -23,6 +23,9 @@ export default function Product() {
         localStorage.setItem("SHOPPINGLIST", JSON.stringify(shoppingList))
     }, [shoppingList] )
 
+    /**
+     * Retrieve store information on the given product based on EAN number.
+     */
     useEffect( () => {
         async function getProductStoreInfo(){
             const res = await axios.get("/product-store-info", {params: {ean: ean}})
@@ -39,6 +42,9 @@ export default function Product() {
         getProductStoreInfo()
     }, [ean])
 
+    /**
+     * Adds the given product EAN to the shoppingList.
+     */
     function addToList(product) {
         if(!shoppingList.includes(product)) {
             setShoppingList(oldShoppingList => ([
@@ -47,6 +53,9 @@ export default function Product() {
         }
     }
 
+    /**
+     * Display for correct EAN number.
+     */
     function productFoundView(){
         return (
             <>
@@ -69,6 +78,9 @@ export default function Product() {
         )
     }
 
+    /**
+     * Display for incorrect EAN number.
+     */
     function productNotFoundView(){
         return (
             <>
@@ -89,7 +101,6 @@ export default function Product() {
         }
 
     }
-
 
     return ( render() )
 }

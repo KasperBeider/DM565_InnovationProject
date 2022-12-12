@@ -1,11 +1,8 @@
-
-import {useState, useEffect} from "react"
-
+import {useState} from "react"
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./Navbar";
 
 import "./styles/app.css"
-
+import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import SearchResult from "./pages/SearchResult";
 import Support from "./pages/Support";
@@ -13,6 +10,11 @@ import Product from "./pages/Product"
 import ShoppingList from "./pages/ShoppingList";
 import Model from "./pages/Model";
 import {ShoppingListContext} from "./ShoppingListContext"
+
+/**
+ * The overall structure of the web-page.
+ * Denotes the routing of all individual pages.
+ */
 
 function App() {
 

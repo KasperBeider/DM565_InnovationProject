@@ -1,6 +1,6 @@
 .model--container{
     float: center;
-    background-color: rgb(214, 211, 171);
+    background-color: rgb(142, 163, 231);
     justify-content: center;
     display: flex;
 }

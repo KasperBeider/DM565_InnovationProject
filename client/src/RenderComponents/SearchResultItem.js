@@ -15,8 +15,6 @@ export default function SearchResultItem(product_item) {
         navigate("/product/" + query)
     }
 
-    console.log(thisProduct)
-
     function displaySearchItem () {
         return (
             <div className="searchItem--container">
@@ -24,8 +22,8 @@ export default function SearchResultItem(product_item) {
                     <p> Navn: {thisProduct.product_name} </p>
                     <p> Beskrivelse: {thisProduct.product_desc}  </p>                
                     <p> Pris: fra {thisProduct.unit_price} DKK/{thisProduct.unit} </p>
-                    {thisProduct.campaign_unit_price && <p> Tilbudspris: {thisProduct.campaign_unit_price} DKK  </p> }
                     <p> {thisProduct.contents}{thisProduct.contents_unit} </p>
+                    {thisProduct.campaign_unit_price && <p className="searchItem--offer"> Tilbudspris: {thisProduct.campaign_unit_price} DKK/{thisProduct.unit}  </p> }
                 </div>
             </div>
         )
