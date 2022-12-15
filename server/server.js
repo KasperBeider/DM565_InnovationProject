@@ -96,8 +96,10 @@ app.get("/store", (req, res) => {
     const storeId = queryObject.storeId.toString()
 
     SQL_QUERY = "SELECT * FROM stores WHERE store_id = ?"
+    console.log(storeId)
 
     db.query(SQL_QUERY, [storeId], (err, result) => {
+        console.log(result)
         res.json(result)
     })
 })
@@ -115,7 +117,6 @@ app.get("/avg-price", (req, res) => {
                 " AND DATEDIFF(CURDATE(), pull_date) BETWEEN 0 AND 30"
     
     db.query(SQL_QUERY, [ean, storeId], (err, result) => {
-        console.log(result)
         res.json(result)
     })
 })
