@@ -96,10 +96,8 @@ app.get("/store", (req, res) => {
     const storeId = queryObject.storeId.toString()
 
     SQL_QUERY = "SELECT * FROM stores WHERE store_id = ?"
-    console.log(storeId)
 
     db.query(SQL_QUERY, [storeId], (err, result) => {
-        console.log(result)
         res.json(result)
     })
 })
@@ -184,7 +182,6 @@ app.get("/campaign-history", (req, res) => {
     SQL_QUERY = "SELECT * FROM campaigns WHERE product_ean = ? AND store_id = ? ORDER BY pull_date"
 
     db.query(SQL_QUERY, [ean, storeId], (err, result) => {
-        console.log(result)
         res.json(result)
     })
 })

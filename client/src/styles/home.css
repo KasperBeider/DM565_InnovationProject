@@ -8,7 +8,7 @@
 .home--SallingGroup {
     display:table-cell;
     width: 25%;
-    background-color: red;
+    background-color: rgb(247, 156, 215);
     padding: 10px;
 }
 
@@ -16,5 +16,5 @@
     display: table-cell;
     width: 25%;
     margin-left: 20px;
-    background-color: blue;
+    background-color:  rgb(241, 141, 189);
 }
